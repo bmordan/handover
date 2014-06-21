@@ -9,12 +9,16 @@ body {
     -o-user-select: none;
     user-select: none;
 }
+table{width:100%;}
+li{list-style-type: none;}
+td{width:33%;}
 
-#page{
-    width: 100%;
-    padding: 0%;
+#controls, #spread{
+    width: 80%;
+    padding: 8%;
     margin: 0% auto;
 }
+#controls{display: none;}
 
 .player {
     cursor: pointer;

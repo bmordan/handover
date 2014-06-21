@@ -1,56 +1,64 @@
 <head>
-  <title>Leaderboard</title>
+  <title>Handover</title>
 </head>
 
 <body>
-    {{> leaderboard}}
+    {{> pupils}}
     {{> controls}}
     {{> switch}}
 </body>
 
 <template name="switch">
-  <input type="button" class="switch" value="controls" />
+  <input type="button" class="switch" value="controls">
 </template>  
 
-<template name="leaderboard">
+<template name="pupils">
   <div id="spread">
-    {{#each players}}
-      {{> player}}
-    {{/each}}
-  </div>
-</template>
-
-<template name="player">
-  <div class="player {{selected}}">
-    <span class="name">{{name}}</span>
-    <span class="score">{{score}}</span>
+    <table>
+      <tr>
+        <td><li><h1>Early Years</h1></li>{{> early}}</td>
+        <td><li><h1>Primary</h1></li></td>
+        <td><li><h1>Ward</h1></li></td>
+      </tr>
+      <tr>
+        <td><li><h1></h1></li></td>
+        <td><li><h1>Secondary</h1></li></td>
+        <td><li><h1>Dialysis</h1></li></td>
+      </tr>
+    </table>
   </div>
 </template>
 
 <template name="controls">
   <div id="controls">
-    {{> name}}
-    {{> list}}
-    {{> age}}
-    {{> bed}} 
+    <input name="name">
+    <input name="age" size="2">
+    <input name="bed" size="2">
+    <input type="radio" name="list" value="E">E
+    <input type="radio" name="list" value="P">P
+    <input type="radio" name="list" value="S">S
+    <input type="radio" name="list" value="W">W
+    <input type="radio" name="ward" value="PICU">P
+    <input type="radio" name="ward" value="BEACH">B
+    <input type="radio" name="ward" value="SAV">S
+    <input type="radio" name="ward" value="MOUNT">M 
+    {{> add}}
   </div>
 </template>
 
-<template name="name">
-  <input name="name" />
+<template name="add">
+  <input type="button" value="add">
 </template>
 
-<template name="list">
-    <input type="radio" name="list" value="B">
-    <input type="radio" name="list" value="S">
-    <input type="radio" name="list" value="M">
-    <input type="radio" name="list" value="P">
-</template>
+<template name="info">
+  <li><span class="name">{{name}}</span>
+  <span class="age">{{age}}</span>
+  <span class="ward">{{ward}}</span>
+  <span class="bed">{{bed}}</span></li>
+</template>  
 
-<template name="age">
-  <input name="age" size="2" />
-</template>
-
-<template name="bed">
-  <input name="bed" size="2" />
+<template name="early">
+  {{#each list}}
+    {{> info}}
+  {{/each}}  
 </template>
