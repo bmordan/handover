@@ -1,0 +1,56 @@
+<head>
+  <title>Leaderboard</title>
+</head>
+
+<body>
+    {{> leaderboard}}
+    {{> controls}}
+    {{> switch}}
+</body>
+
+<template name="switch">
+  <input type="button" class="switch" value="controls" />
+</template>  
+
+<template name="leaderboard">
+  <div id="spread">
+    {{#each players}}
+      {{> player}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="player">
+  <div class="player {{selected}}">
+    <span class="name">{{name}}</span>
+    <span class="score">{{score}}</span>
+  </div>
+</template>
+
+<template name="controls">
+  <div id="controls">
+    {{> name}}
+    {{> list}}
+    {{> age}}
+    {{> bed}} 
+  </div>
+</template>
+
+<template name="name">
+  <input name="name" />
+</template>
+
+<template name="list">
+    <input type="radio" name="list" value="B">
+    <input type="radio" name="list" value="S">
+    <input type="radio" name="list" value="M">
+    <input type="radio" name="list" value="P">
+</template>
+
+<template name="age">
+  <input name="age" size="2" />
+</template>
+
+<template name="bed">
+  <input name="bed" size="2" />
+</template>
