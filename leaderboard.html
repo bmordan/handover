@@ -17,12 +17,12 @@
     <table>
       <tr>
         <td><li><h1>Early Years</h1></li>{{> early}}</td>
-        <td><li><h1>Primary</h1></li></td>
-        <td><li><h1>Ward</h1></li></td>
+        <td><li><h1>Primary</h1></li>{{> primary}}</td>
+        <td><li><h1>Ward</h1></li>{{> ward}}</td>
       </tr>
       <tr>
         <td><li><h1></h1></li></td>
-        <td><li><h1>Secondary</h1></li></td>
+        <td><li><h1>Secondary</h1></li>{{> secondary}}</td>
         <td><li><h1>Dialysis</h1></li></td>
       </tr>
     </table>
@@ -34,27 +34,39 @@
     <input name="name">
     <input name="age" size="2">
     <input name="bed" size="2">
-    <input type="radio" name="list" value="E">E
-    <input type="radio" name="list" value="P">P
-    <input type="radio" name="list" value="S">S
-    <input type="radio" name="list" value="W">W
-    <input type="radio" name="ward" value="PICU">P
-    <input type="radio" name="ward" value="BEACH">B
-    <input type="radio" name="ward" value="SAV">S
-    <input type="radio" name="ward" value="MOUNT">M 
+    <br />
+    <input type="radio" name="list" class="radio-list" id='E' value="E">
+    <label for='E'>E</label>
+    <input type="radio" name="list" class="radio-list" id='P' value="P">
+    <label for='P'>P</label>
+    <input type="radio" name="list" class="radio-list" id='S' value="S">
+    <label for='S'>S</label>
+    <input type="radio" name="list" class="radio-list" id='W' value="W">
+    <label for='W'>W</label>
+    <br />
+    <input type="radio" name="ward" class="radio-ward" id='PICU' value="PICU">
+    <label for='PICU'>PICU</label>
+    <input type="radio" name="ward" class="radio-ward" id='BEACH' value="BEACH">
+    <label for='BEACH'>BEACH</label>
+    <input type="radio" name="ward" class="radio-ward" id='SAV' value="SAV">
+    <label for='SAV'>SAV</label>
+    <input type="radio" name="ward" class="radio-ward" id='MOUNT' value="MOUNT">
+    <label for='MOUNT'>MOUNT</label>
+    <br />
     {{> add}}
   </div>
 </template>
 
 <template name="add">
   <input type="button" value="add">
-</template>
+</template>  
+  
 
 <template name="info">
-  <li><span class="name">{{name}}</span>
-  <span class="age">{{age}}</span>
-  <span class="ward">{{ward}}</span>
-  <span class="bed">{{bed}}</span></li>
+  <li>
+  <span class="name">{{name}}</span><span class="age">{{age}}</span>
+  (<span class="ward">{{ward}}</span><span class="bed">{{bed}}</span>)
+  </li>
 </template>  
 
 <template name="early">
@@ -62,3 +74,23 @@
     {{> info}}
   {{/each}}  
 </template>
+
+<template name="primary">
+  {{#each list}}
+    {{> info}}
+  {{/each}}  
+</template>
+
+<template name="secondary">
+  {{#each list}}
+    {{> info}}
+  {{/each}}  
+</template>
+
+<template name="ward">
+  {{#each list}}
+    {{> info}}
+  {{/each}}  
+</template>
+
+

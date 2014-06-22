@@ -1,7 +1,8 @@
 body {
+    width:100%;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 200;
-    margin: 50px 0;
+    margin: auto;
     padding: 0;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -9,17 +10,52 @@ body {
     -o-user-select: none;
     user-select: none;
 }
+input{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  margin: 1%;
+}
+input[type=radio]{display: none;}
+input[type=radio] + label::before {
+    content: '';
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 50%;
+    margin: 1em;
+}
+input[type=radio]:checked + label::before {
+    background-color: #ffa;
+}
+.radio-list + label::before {
+    width: 1.5em;
+    height: 1.5em;
+}
+.radio-ward + label::before {
+    width: 1.5em;
+    height: 1.5em;
+}
 table{width:100%;}
 li{list-style-type: none;}
-td{width:33%;}
+td{width:33%;vertical-align:top;padding:2px;}
 
-#controls, #spread{
+#spread{
     width: 80%;
     padding: 8%;
-    margin: 0% auto;
+    margin: auto;
+}
+#controls{
+  width: 58%;
+  padding: 8%;
+  margin: auto; 
 }
 #controls{display: none;}
+#send{padding:3%;background:#7c7c7c;color:#fff;}
 
+.add{
+  display:block;
+  clear:both;
+  margin: 0% auto 3% auto;
+}
 .player {
     cursor: pointer;
     padding: 5px;

@@ -9,8 +9,7 @@ if (Meteor.isClient) {
      var dd  = this.getDate().toString();
      return yyyy + '-' + (mm[1]?mm:"0"+mm[0]) + '-' + (dd[1]?dd:"0"+dd[0]); 
     };
-  d = new Date();
-  
+  var d = new Date();
   
   Template.switch.events({
     'click' : function (e){
@@ -28,17 +27,35 @@ if (Meteor.isClient) {
   
   Template.add.events({
     'click' : function(e){
+      console.log(e);
       var name = e.delegateTarget.children['name'].value;
       var age = e.delegateTarget.children['age'].value;
       var bed = e.delegateTarget.children['bed'].value;
-      var list = e.delegateTarget.children['list'].value;
-      var ward = e.delegateTarget.children['ward'].value;
+      var list = $('input[name=list]:checked')[0].value;
+      var ward = $('input[name=ward]:checked')[0].value;
       Pupils.insert({date: d.yyyymmdd(), name: name, age: age, bed: bed, list: list, ward: ward});
+      e.delegateTarget.children['name'].value = null;
+      e.delegateTarget.children['age'].value = null;
+      e.delegateTarget.children['bed'].value = null;
+      $('input[name=list]').attr('checked',false);
+      $('input[name=ward  ]').attr('checked',false);      
     }
   });
   
   Template.early.list = function(){
     return Pupils.find({list: 'E'});
+  };
+  
+  Template.primary.list = function(){
+    return Pupils.find({list: 'P'});
+  };
+  
+  Template.secondary.list = function(){
+    return Pupils.find({list: 'S'});
+  };
+  
+  Template.ward.list = function(){
+    return Pupils.find({list: 'W'});
   };
 
 }
@@ -46,6 +63,10 @@ if (Meteor.isClient) {
 // On server startup, create some players if the database is empty.
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    
+    return Meteor.methods({
+      removeAllPupils: function(){
+        return Pupils.remove({});
+      }
+    });
   });
 }
