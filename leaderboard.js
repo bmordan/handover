@@ -1,4 +1,5 @@
 Pupils = new Meteor.Collection("pupils");
+Dialysis = new Meteor.Collection("dialysis");
 
 if (Meteor.isClient) {
   
@@ -58,15 +59,27 @@ if (Meteor.isClient) {
     return Pupils.find({list: 'W'});
   };
 
+  Template.dialysis.list = function(){
+    return Dialysis.find({});
+  };
+
 }
 
 // On server startup, create some players if the database is empty.
 if (Meteor.isServer) {
   Meteor.startup(function () {
+    
     return Meteor.methods({
       removeAllPupils: function(){
         return Pupils.remove({});
+        return Dialysis.remove({});
       }
     });
+
+    if(Dialysis.find().count() === 0){
+      Dialysis.insert({name:"Ben",age:15,days:1});
+      Dialysis.insert({name:"Simone",age:9,days:1});
+    }
+
   });
 }

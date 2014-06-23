@@ -23,7 +23,7 @@
       <tr>
         <td><li><h1></h1></li></td>
         <td><li><h1>Secondary</h1></li>{{> secondary}}</td>
-        <td><li><h1>Dialysis</h1></li></td>
+        <td><li><h1>Dialysis</h1></li>{{> dialysis}}</td>
       </tr>
     </table>
   </div>
@@ -67,6 +67,12 @@
   <span class="name">{{name}}</span><span class="age">{{age}}</span>
   (<span class="ward">{{ward}}</span><span class="bed">{{bed}}</span>)
   </li>
+</template>
+
+<template name="dinfo">
+  <li>
+  <span class="name">{{name}}</span><span class="age">{{age}}</span>
+  </li>
 </template>  
 
 <template name="early">
@@ -93,4 +99,9 @@
   {{/each}}  
 </template>
 
+<template name="dialysis">
+  {{#each list}}
+    {{> dinfo}}
+  {{/each}}
+</template>    
 
