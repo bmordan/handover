@@ -4,14 +4,22 @@ Dialysis = new Meteor.Collection("dialysis");
 if (Meteor.isClient) {
 
   Session.set("page", "spread");
+
   Date.prototype.yyyymmdd = function() {
    var yyyy = this.getFullYear().toString();
    var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
    var dd  = this.getDate().toString();
    return yyyy + '-' + (mm[1]?mm:"0"+mm[0]) + '-' + (dd[1]?dd:"0"+dd[0]); 
   };
-
   var d = new Date();
+  function dayStr(i){
+    var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    return days[i];
+  };
+  function monStr(i){
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return months[i];
+  };
    
   Template.switch.events({
     'click' : function (e){
@@ -34,7 +42,7 @@ if (Meteor.isClient) {
       var bed = e.delegateTarget.children['bed'].value;
       var list = $('input[name=list]:checked')[0].value;
       var ward = $('input[name=ward]:checked')[0].value;
-      Pupils.insert({date: '2014-06-22', name: name, age: age, bed: bed, list: list, ward: ward});
+      Pupils.insert({date: d.yyyymmdd(), name: name, age: age, bed: bed, list: list, ward: ward});
       e.delegateTarget.children['name'].value = null;
       e.delegateTarget.children['age'].value = null;
       e.delegateTarget.children['bed'].value = null;
@@ -63,6 +71,12 @@ if (Meteor.isClient) {
     return Dialysis.find({days: {$in: [d.getDay()]}});
   };
 
+  Template.today.nicedate = function(){
+    return dayStr(d.getDay()) + ' ' + d.getDate() + ' ' + monStr(d.getMonth());
+  };
+
+
+
 }
 
 // On server startup, create some players if the database is empty.
@@ -76,7 +90,7 @@ if (Meteor.isServer) {
       Dialysis.insert({name:"Nicholas",age:14,days:[2,4]});
       Dialysis.insert({name:"Rebecca",age:15,days:[1,3,5]});
       Dialysis.insert({name:"Denni",age:15,days:[2,4]});
-      Dialysis.insert({name:"George",age:15,days:[1,3,5]});
+      Dialysis.insert({name:"George",age:15,days:[2,4]});
       Dialysis.insert({name:"Gulsah",age:16,days:[2,4]});
       Dialysis.insert({name:"Marnie",age:14,days:[2,4]});
     }

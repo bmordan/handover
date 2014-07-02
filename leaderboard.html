@@ -21,7 +21,7 @@
         <td><li><h1>Ward</h1></li>{{> ward}}</td>
       </tr>
       <tr>
-        <td><li><h1></h1></li></td>
+        <td><li><h1>{{> today}}</h1></li></td>
         <td><li><h1>Secondary</h1></li>{{> secondary}}</td>
         <td><li><h1>Dialysis</h1></li>{{> dialysis}}</td>
       </tr>
@@ -59,13 +59,12 @@
 
 <template name="add">
   <input type="button" value="add">
-</template>  
-  
+</template>
 
 <template name="info">
   <li>
-  <span class="name">{{name}}</span><span class="age">{{age}}</span>
-  (<span class="ward">{{ward}}</span><span class="bed">{{bed}}</span>)
+  <span class="name">{{name}}</span>&nbsp;<span class="age">{{age}}</span>
+  (<span class="ward">{{ward}}</span>&nbsp;<span class="bed">{{bed}}</span>)
   </li>
 </template>
 
@@ -103,5 +102,8 @@
   {{#each dlist}}
     {{> dinfo}}
   {{/each}}
-</template>    
+</template>
 
+<template name="today">
+  {{nicedate}}
+</template>   
