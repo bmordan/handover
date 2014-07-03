@@ -48,8 +48,10 @@ td{width:33%;vertical-align:top;padding:2px;}
   padding: 8%;
   margin: auto; 
 }
+
 #controls{display: none;}
 #send{padding:3%;background:#7c7c7c;color:#fff;}
+#picu,#beach,#sav,#mount{width:150px;height:150px;float:left;margin:3px;}
 
 .add{
   display:block;

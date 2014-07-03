@@ -20,6 +20,13 @@ if (Meteor.isClient) {
     var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     return months[i];
   };
+  function swap(e){
+	  if(e.target.outerHTML.match(/_down.jpg/gi) == '_down.jpg'){
+	      e.target.outerHTML = '<img src="images/PICU_up.jpg" />';
+		}else{
+		  e.target.outerHTML = '<img src="images/PICU_down.jpg" />';
+		}
+  }
    
   Template.switch.events({
     'click' : function (e){
@@ -33,22 +40,6 @@ if (Meteor.isClient) {
           Session.set("page", "spread");
         }
       }
-  });
-  
-  Template.add.events({
-    'click' : function(e){
-      var name = e.delegateTarget.children['name'].value;
-      var age = e.delegateTarget.children['age'].value;
-      var bed = e.delegateTarget.children['bed'].value;
-      var list = $('input[name=list]:checked')[0].value;
-      var ward = $('input[name=ward]:checked')[0].value;
-      Pupils.insert({date: d.yyyymmdd(), name: name, age: age, bed: bed, list: list, ward: ward});
-      e.delegateTarget.children['name'].value = null;
-      e.delegateTarget.children['age'].value = null;
-      e.delegateTarget.children['bed'].value = null;
-      $('input[name=list]').attr('checked',false);
-      $('input[name=ward]').attr('checked',false);      
-    }
   });
   
   Template.early.list = function(){
@@ -75,7 +66,35 @@ if (Meteor.isClient) {
     return dayStr(d.getDay()) + ' ' + d.getDate() + ' ' + monStr(d.getMonth());
   };
 
-
+  Template.areas.events({
+	  
+	 'click' : function(e){
+		console.log(e.currentTarget);
+		var split = e.currentTarget.split("/");
+		console.log(split[1]);
+	    switch(e.currentTarget){
+			case 'li#picu':
+			  console.log('picu');
+			  swap(e);
+			break;
+			case 'li#beach':
+			  console.log('beach');
+			break;
+			case 'li#sav':
+			  console.log('sav');
+			break;
+			case 'li#mount':
+			  console.log('mount');
+			break;
+			
+			default:
+			  console.log('default');
+		};
+		  
+		
+		
+	  }
+  });
 
 }
 

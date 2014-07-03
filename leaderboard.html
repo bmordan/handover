@@ -31,35 +31,15 @@
 
 <template name="controls">
   <div id="controls">
-    <input name="name">
-    <input name="age" size="2">
-    <input name="bed" size="2">
-    <br />
-    <input type="radio" name="list" class="radio-list" id='E' value="E">
-    <label for='E'>E</label>
-    <input type="radio" name="list" class="radio-list" id='P' value="P">
-    <label for='P'>P</label>
-    <input type="radio" name="list" class="radio-list" id='S' value="S">
-    <label for='S'>S</label>
-    <input type="radio" name="list" class="radio-list" id='W' value="W">
-    <label for='W'>W</label>
-    <br />
-    <input type="radio" name="ward" class="radio-ward" id='PICU' value="PICU">
-    <label for='PICU'>PICU</label>
-    <input type="radio" name="ward" class="radio-ward" id='BEACH' value="BEACH">
-    <label for='BEACH'>BEACH</label>
-    <input type="radio" name="ward" class="radio-ward" id='SAV' value="SAV">
-    <label for='SAV'>SAV</label>
-    <input type="radio" name="ward" class="radio-ward" id='MOUNT' value="MOUNT">
-    <label for='MOUNT'>MOUNT</label>
-    <br />
-    {{> add}}
+    <ul>
+      {{> areas}}
+    </ul>
   </div>
 </template>
 
-<template name="add">
-  <input type="button" value="add">
-</template>
+
+
+
 
 <template name="info">
   <li>
@@ -106,4 +86,11 @@
 
 <template name="today">
   {{nicedate}}
+</template>
+
+<template name="areas">
+  <li id="picu"><img src="images/PICU_down.jpg" /></li>
+  <li id="beach"><img src="images/BEACH_down.jpg" /></li>
+  <li id="sav"><img src="images/SAV_down.jpg" /></li>
+  <li id="mount"><img src="images/MOUNT_down.jpg" /></li>
 </template>   
