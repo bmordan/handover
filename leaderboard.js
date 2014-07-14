@@ -66,35 +66,42 @@ if (Meteor.isClient) {
     return dayStr(d.getDay()) + ' ' + d.getDate() + ' ' + monStr(d.getMonth());
   };
 
-  Template.areas.events({
-	  
-	 'click' : function(e){
-		console.log(e.currentTarget);
-		var split = e.currentTarget.split("/");
-		console.log(split[1]);
-	    switch(e.currentTarget){
-			case 'li#picu':
-			  console.log('picu');
-			  swap(e);
-			break;
-			case 'li#beach':
-			  console.log('beach');
-			break;
-			case 'li#sav':
-			  console.log('sav');
-			break;
-			case 'li#mount':
-			  console.log('mount');
-			break;
-			
-			default:
-			  console.log('default');
-		};
-		  
-		
-		
-	  }
-  });
+  Template.areas.rendered = function(template){
+    var el = this.find('#areas');
+    Hammer(el).on('tap', function(e){
+      console.log(e);
+      switch(e.gesture.target.outerHTML.split("/")[1]){
+        case 'PICU_down.jpg">':
+          e.gesture.target.src = "images/PICU_up.jpg";
+          e.currentTarget.children.beach.children[0].src = "images/BEACH_down.jpg";
+          e.currentTarget.children.sav.children[0].src = "images/SAV_down.jpg";
+          e.currentTarget.children.mount.children[0].src = "images/MOUNT_down.jpg";
+        break;
+
+        case 'BEACH_down.jpg">':
+          e.currentTarget.children.picu.children[0].src = "images/PICU_down.jpg";
+          e.gesture.target.src = "images/BEACH_up.jpg";
+          e.currentTarget.children.sav.children[0].src = "images/SAV_down.jpg";
+          e.currentTarget.children.mount.children[0].src = "images/MOUNT_down.jpg";
+        break;
+
+        case 'SAV_down.jpg">':
+          e.currentTarget.children.picu.children[0].src = "images/PICU_down.jpg";
+          e.currentTarget.children.beach.children[0].src = "images/BEACH_down.jpg";
+          e.gesture.target.src = "images/SAV_up.jpg";
+          e.currentTarget.children.mount.children[0].src = "images/MOUNT_down.jpg";
+        break;
+
+        case 'MOUNT_down.jpg">':
+          e.currentTarget.children.picu.children[0].src = "images/PICU_down.jpg";
+          e.currentTarget.children.beach.children[0].src = "images/BEACH_down.jpg";
+          e.currentTarget.children.sav.children[0].src = "images/SAV_down.jpg";
+          e.gesture.target.src = "images/MOUNT_up.jpg";
+        break;
+ 
+      };
+    });
+	}  
 
 }
 
