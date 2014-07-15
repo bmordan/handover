@@ -4,7 +4,7 @@ Dialysis = new Meteor.Collection("dialysis");
 if (Meteor.isClient) {
 
   Session.set("page", "spread");
-
+  var saveArray = [];
   Date.prototype.yyyymmdd = function() {
    var yyyy = this.getFullYear().toString();
    var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
@@ -76,13 +76,14 @@ if (Meteor.isClient) {
           e.currentTarget.children.beach.children[0].src = "images/BEACH_down.jpg";
           e.currentTarget.children.sav.children[0].src = "images/SAV_down.jpg";
           e.currentTarget.children.mount.children[0].src = "images/MOUNT_down.jpg";
+          saveArray.push('{"ward":"PICU"}');
         break;
-
         case 'BEACH_down.jpg">':
           e.currentTarget.children.picu.children[0].src = "images/PICU_down.jpg";
           e.gesture.target.src = "images/BEACH_up.jpg";
           e.currentTarget.children.sav.children[0].src = "images/SAV_down.jpg";
           e.currentTarget.children.mount.children[0].src = "images/MOUNT_down.jpg";
+          saveArray.push('{"ward":"BEACH"}');
         break;
 
         case 'SAV_down.jpg">':
@@ -90,6 +91,7 @@ if (Meteor.isClient) {
           e.currentTarget.children.beach.children[0].src = "images/BEACH_down.jpg";
           e.gesture.target.src = "images/SAV_up.jpg";
           e.currentTarget.children.mount.children[0].src = "images/MOUNT_down.jpg";
+          saveArray.push('{"ward":"SAV"}');
         break;
 
         case 'MOUNT_down.jpg">':
@@ -97,11 +99,49 @@ if (Meteor.isClient) {
           e.currentTarget.children.beach.children[0].src = "images/BEACH_down.jpg";
           e.currentTarget.children.sav.children[0].src = "images/SAV_down.jpg";
           e.gesture.target.src = "images/MOUNT_up.jpg";
+          saveArray.push('{"ward":"MOUNT"}');
         break;
  
       };
     });
-	}  
+	}
+
+    Template.schoolareas.rendered = function(template){
+    var el = this.find('#schoolareas');
+    Hammer(el).on('tap', function(e){
+      console.log(e);
+      switch(e.gesture.target.outerHTML.split("/")[1]){
+        case 'EARLY_down.jpg">':
+          e.gesture.target.src = "images/EARLY_up.jpg";
+          e.currentTarget.children.primary.children[0].src = "images/PRIMARY_down.jpg";
+          e.currentTarget.children.secondary.children[0].src = "images/SECONDARY_down.jpg";
+          e.currentTarget.children.ward.children[0].src = "images/WARD_down.jpg";
+        break;
+
+        case 'PRIMARY_down.jpg">':
+          e.currentTarget.children.early.children[0].src = "images/EARLY_down.jpg";
+          e.gesture.target.src = "images/PRIMARY_up.jpg";
+          e.currentTarget.children.secondary.children[0].src = "images/SECONDARY_down.jpg";
+          e.currentTarget.children.ward.children[0].src = "images/WARD_down.jpg";
+        break;
+
+        case 'SECONDARY_down.jpg">':
+          e.currentTarget.children.early.children[0].src = "images/EARLY_down.jpg";
+          e.currentTarget.children.primary.children[0].src = "images/PRIMARY_down.jpg";
+          e.gesture.target.src = "images/SECONDARY_up.jpg";
+          e.currentTarget.children.ward.children[0].src = "images/WARD_down.jpg";
+        break;
+
+        case 'WARD_down.jpg">':
+          e.currentTarget.children.early.children[0].src = "images/EARLY_down.jpg";
+          e.currentTarget.children.primary.children[0].src = "images/PRIMARY_down.jpg";
+          e.currentTarget.children.secondary.children[0].src = "images/SECONDARY_down.jpg";
+          e.gesture.target.src = "images/WARD_up.jpg";
+        break;
+ 
+      };
+    });
+  }  
 
 }
 

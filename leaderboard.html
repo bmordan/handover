@@ -33,7 +33,9 @@
   <div id="controls">
     
       {{> areas}}
-
+      {{> schoolareas}}
+      {{> inputs}}
+    
   </div>
 </template>
 
@@ -95,4 +97,19 @@
     <li id="sav"><img src="images/SAV_down.jpg" /></li>
     <li id="mount"><img src="images/MOUNT_down.jpg" /></li>
   </ul>
-</template>   
+</template>
+
+<template name="schoolareas">
+  <ul id="schoolareas">
+    <li id="early"><img src="images/EARLY_down.jpg" /></li>
+    <li id="primary"><img src="images/PRIMARY_down.jpg" /></li>
+    <li id="secondary"><img src="images/SECONDARY_down.jpg" /></li>
+    <li id="ward"><img src="images/WARD_down.jpg" /></li>
+  </ul>
+</template>
+
+<template name="inputs">
+  <input name="name" id="inputname" placeholder="name">
+  <input name="age" size="3" id="inputage" placeholder="age">
+  <input name="bed" size="3" id="inputbed" placeholder="bed">
+</template>

@@ -10,30 +10,8 @@ body {
     -o-user-select: none;
     user-select: none;
 }
-input{
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1em;
-  margin: 1%;
-}
-input[type=radio]{display: none;}
-input[type=radio] + label::before {
-    content: '';
-    display: inline-block;
-    border: 1px solid #000;
-    border-radius: 50%;
-    margin: 1em;
-}
-input[type=radio]:checked + label::before {
-    background-color: #ffa;
-}
-.radio-list + label::before {
-    width: 1.5em;
-    height: 1.5em;
-}
-.radio-ward + label::before {
-    width: 1.5em;
-    height: 1.5em;
-}
+
+
 table{width:100%;}
 li{list-style-type: none;}
 td{width:33%;vertical-align:top;padding:2px;}
@@ -44,14 +22,20 @@ td{width:33%;vertical-align:top;padding:2px;}
     margin: auto;
 }
 #controls{
-  width: 75%;
-  padding: 8%;
+  width: 700px;
+  padding-top: 8%;
   margin: auto; 
 }
 
 #controls{display: none;}
 #send{padding:3%;background:#7c7c7c;color:#fff;}
-#picu,#beach,#sav,#mount{width:150px;height:150px;float:left;margin:3px;}
+#schoolareas{clear:both;}
+#picu,#beach,#sav,#mount,#early,#primary,#secondary,#ward{width:150px;height:150px;float:left;margin:3px;}
+#inputname,#inputage,#inputbed{padding:20px;font-size: 2em;}
+#inputname{clear:both;width:84%;margin:5.6% 0% 2% 5%;}
+#inputbed{float:right;}
+#inputage{float:left;margin:0% 0% 2% 5%;}
+
 
 .add{
   display:block;
